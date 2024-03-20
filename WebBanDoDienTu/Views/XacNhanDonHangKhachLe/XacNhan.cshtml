@@ -1,0 +1,170 @@
+﻿@using WebBanDoDienTu.Models
+@{
+    ViewBag.Title = "XacNhan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    GioHang gioHang = (GioHang)Session["GioHang"];
+}
+
+@using (Html.BeginForm("XacNhanDonHang", "XacNhanDonHangKhachLe"))
+{
+    @Html.AntiForgeryToken()
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <h2 style="margin-bottom:100px;text-align:center">Chi tiết hóa đơn</h2>
+            <form action="#" class="checkout__form">
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3 style="margin-bottom:30px">Thông tin khách hàng </h3>
+                                <div class="form-group">
+                                    <label>Tên khách hàng</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="TenKHKhongAccount" style="padding:4px 7px 4px 7px;width:100% " />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Số điện thoại khách hàng</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="DienThoaiKhongAccount" style="padding:4px 7px 4px 7px; width: 100%" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Địa chỉ nhận hàng</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="DiaChiNhanHang" style="padding:4px 7px 4px 7px; width:100%" />
+                                    </div>
+                                </div>
+
+                                <div class="collapsible">
+
+                                    <input type="checkbox" id="collapsible-head" name="TrangThaiThanhToan" />
+                                    <!--<label for="collapsible-head" style="display:inline-block"> Thanh toán liền</label>-->
+                                    <label for="collapsible-head" style="display:inline-block">Đồng ý và chấp nhận điều khoản thanh toán</label>
+
+                                    <div class="collapsible-text">
+                                        <div class="form-group">
+                                            <a href="@Url.Action("Payment","Home")">Thanh toán VNPAY</a>
+                                            <label>Chọn phương thức thánh toán</label>
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("IDPT", null, htmlAttributes: new { @class = "form-control" })
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Hình thức thanh toán</label>
+                                                <select class="form-control" name="TypePayment" id="drTypePayment">
+                                                    <option value="1" selected>COD</option>
+                                                    <option value="2">Chuyển khoản</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group" id="load_form_payment" style="display:none;">
+                                                <h4> <label>Chọn phương thức thanh toán:</label><br /></h4>
+                                                <h5>Cách 1: Chuyển hướng sang VNPAY chọn phương thức thanh toán</h5>
+                                                <label><input type="radio" name="TypePaymentVN" value="0" checked /> Cổng thanh toán VNPAYQR </label>
+                                                <h5>Cách 2: Tách phương thức thanh toán tại site của Merchant</h5>
+                                                <label><input type="radio" name="TypePaymentVN" value="1" /> Thanh toán qua ứng dụng hỗ trợ VNPAYQR </label><br />
+                                                <label><input type="radio" name="TypePaymentVN" value="2" /> ATM-Tài khoản ngân hàng nội địa </label><br />
+                                                <label><input type="radio" name="TypePaymentVN" value="3" /> Thanh toán qua thẻ quốc tế </label><br />
+                                            </div>
+                                            <div class="form-group" id="load_send"></div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-block btn-success" id="btnCheckOut">Đặt hàng</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="checkout__order">
+                            <h5>Chi tiết các sản phẩm</h5>
+                            <div class="checkout__order__product">
+                                <ul>
+                                    <li>
+                                        <span class="top__text">Tên sản phẩm</span>
+                                        <span class="top__text__right">ĐG/SP</span>
+                                        <span class="top__text__right" style="margin-right:50px">Số lượng</span>
+                                    </li>
+                                    @foreach (var item in gioHang.ListHang)
+                                    {
+                                        <li>
+                                            @item.gioHang.TenMH
+                                            <span class="money">@item.gioHang.DonGia VND</span>
+                                            <span style="margin-right:90px">@item._soLuongHang</span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li>Tổng cộng <span class="money">@gioHang.TongTien() VND</span></li>
+                                </ul>
+                            </div>
+
+                            <button type="submit" value="Đặt hàng" class="site-btn">Đặt hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+
+}
+
+
+<style>
+
+
+    .collapsible {
+        display: inline-block;
+        max-width: 450px;
+    }
+
+
+        .collapsible label {
+            position: relative;
+            background-color: #ffffff;
+            box-shadow: 0 5px 11px 0 rgba(0,0,0,0.1),none 4px 11px 0 rgba(0,0,0,0.08);
+            color: #1c1c6b;
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+            .collapsible label::after {
+                content: "";
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                width: 18px;
+            }
+
+    .collapsible-text {
+        max-height: 1px;
+        overflow: hidden;
+        border-radius: 4px;
+        line-height: 1.4;
+        position: relative;
+        top: -100%;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+    }
+
+    .collapsible input:checked ~ .collapsible-text {
+        max-height: 300px;
+        padding-bottom: 25px;
+        background: #fff;
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,0.1),none 4px 11px 0 rgba(0,0,0,0.08);
+        top: 0;
+        opacity: 1;
+    }
+</style>

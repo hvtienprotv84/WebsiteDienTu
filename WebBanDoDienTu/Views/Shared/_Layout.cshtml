@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>TPhoneS - Cửa Hàng Điện Thoại Uy Tín Số 1 VN</title>
+    <link href="jquery.signalR-2.4.3.js" rel="stylesheet" />
+    <link href="jquery.signalR-2.4.3.min.js" rel="stylesheet" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/css/style.css" type="text/css">
+
+    <!--dòng code này dùng để thêm ảnh icon khi thu nhỏ khung chức năng của Admin-->
+    <link rel="shortcut icon" href="~/Images/Untitled-1.png" />
+
+
+
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li>
+                <a href="#">
+                    <span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="~/Home/Index">   <img src="~/Images/Untitled-1.png" />  </a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    @Html.Partial("_Header")
+    <!-- Header Section End -->
+    @RenderBody()
+    <!-- Footer Section Begin -->
+    @Html.Partial("_Footer")
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="~/Assets/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Assets/js/jquery-ui.min.js"></script>
+    <script src="~/Assets/js/mixitup.min.js"></script>
+    <script src="~/Assets/js/jquery.countdown.min.js"></script>
+    <script src="~/Assets/js/jquery.slicknav.js"></script>
+    <script src="~/Assets/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/js/jquery.nicescroll.min.js"></script>
+    <script src="~/Assets/js/main.js"></script>
+
+
+    <!-- đoạn code jquery này dùng để có dấu phẩy trong giá của sản phẩm-->
+    <script>
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ",");
+        }
+
+
+        $('.money').each(function () {
+            var v_pound = $(this).html();
+            v_pound = numberWithCommas(v_pound);
+
+            $(this).html(v_pound)
+
+        })
+    </script>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

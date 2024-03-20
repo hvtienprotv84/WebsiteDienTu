@@ -1,0 +1,77 @@
+﻿@model WebBanDoDienTu.Models.KhachHang
+
+@{
+    ViewBag.Title = "CapNhatThongTinCaNhan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12">
+                <h2 style="margin-bottom:60px">Thông tin cá nhân</h2>
+                <div class="contact__content">
+                    <div class="contact__address">
+
+                        <ul>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.IDKH)
+                            @Html.HiddenFor(model => model.UserName)
+                            @Html.HiddenFor(model => model.Password)
+                            @Html.HiddenFor(model => model.DiemTichLuy)
+                            @Html.HiddenFor(model => model.DiemTichLuyConLai)
+
+                            <li>
+                                <h6> Tên khách hàng</h6>
+                                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                            </li>
+                            <li>
+                                <h6> Số điện thoại</h6>
+                                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                            </li>
+
+                            <li>
+                                <h6> Ngày sinh</h6>
+                                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                            </li>
+                            <li>
+                                <h6> Địa chỉ giao hàng 1</h6>
+                                @Html.EditorFor(model => model.DiaChiGiaoHang1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiaChiGiaoHang1, "", new { @class = "text-danger" })
+                            </li>
+                            <li>
+                                <h6> Địa chỉ giao hàng 2</h6>
+                                @Html.EditorFor(model => model.DiaChiGiaoHang2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiaChiGiaoHang2, "", new { @class = "text-danger" })
+                            </li>
+                            <li>
+                                <h6> Email</h6>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </li>
+                        </ul>
+
+                    </div>
+                    <a href="/ThongTinCaNhan/CapNhatThongTinCaNhan"> </a>
+                </div>
+                <button type="submit" class="site-btn">Cập nhât</button>
+
+                <a href="~/ThongTinCaNhan/Index">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-block" style="width:300px; margin-top:40px">Trở về</button>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+
+}

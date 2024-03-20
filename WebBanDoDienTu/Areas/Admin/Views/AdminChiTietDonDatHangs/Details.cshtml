@@ -1,0 +1,61 @@
+﻿@model WebBanDoDienTu.Models.ChiTietDonDatHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Chi tiết hóa đơn</h4>
+
+            <form class="forms-sample">
+                <div class="form-group row">
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ID hóa đơn</label>
+                    <div class="col-sm-9">
+                        @Html.DisplayFor(model => model.IDDDH)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên mặt hàng</label>
+                    <div class="col-sm-9">
+                        @Html.DisplayFor(model => model.MatHang.TenMH)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Số lượng mặt hàng</label>
+                    <div class="col-sm-9">
+                        @Html.DisplayFor(model => model.SoluongMH)
+                    </div>
+                </div>
+
+                <h3>Phần bình luận</h3>
+                @if (Model.DanhGiaSanPham != null && Model.BinhLuan != null)
+                {
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Đánh giá sản phẩm</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.DanhGiaSanPham) <span>★</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Bình luận</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.BinhLuan)
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <h4>Khách hàng chưa đánh giá sản phẩm</h4>
+                }
+
+                <a href="~/Admin/AdminChiTietDonDatHangs/Index">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-block" style="width:300px; margin-top:40px">Trở về</button>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

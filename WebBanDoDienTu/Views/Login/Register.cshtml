@@ -1,0 +1,144 @@
+﻿@model WebBanDoDienTu.Models.KhachHang
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Areas/Admin/Assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Areas/Admin/Assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/Areas/Admin/Assets/css/style.css">
+    <!-- End layout styles -->
+    <title>Đăng ký</title>
+    <!-- Css Styles -->
+
+    <link rel="shortcut icon" href="~/Images/Untitled-1.png" />
+
+
+
+
+</head>
+<body>
+
+    <div id="form-login">
+
+        @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { enctype = "multi/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="container-scroller">
+                <div class="container-fluid page-body-wrapper full-page-wrapper">
+                    <div class="row w-100 m-0">
+                        <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                            <div class="card col-lg-4 mx-auto">
+                                <div class="card-body px-5 py-5">
+                                    <div>
+                                        <h2 class="card-title text-left mb-3" style="justify-content: center; display: flex;">Register</h2>
+                                    </div>
+
+                                    <form>
+                                        <div class="form-group">
+
+                                            <label>Tên khách hàng</label> <br />
+                                            <input id="TenKH" name="TenKH" style="field-validation-error" class="form-control p_input" type="text" value="">
+                                            <td>@Html.ValidationMessageFor(model => model.TenKH)</td>
+
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label>Số điện thoại</label> <br />
+                                            <input id="SDT" name="SDT" style="field-validation-error" class="form-control p_input" type="text" value="">
+                                            <td>@Html.ValidationMessageFor(model => model.SDT)</td>
+
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label>Email</label> <br />
+                                            <input id="Email" name="Email" style="field-validation-error" class="form-control p_input" type="text" value="">
+                                            <td>@Html.ValidationMessageFor(model => model.Email)</td>
+
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Địa chỉ</label> <br />
+                                            <input id="DiaChiGiaoHang1" name="DiaChiGiaoHang1" style="field-validation-error" class="form-control p_input" type="text" value="">
+                                            <td>@Html.ValidationMessageFor(model => model.DiaChiGiaoHang1)</td>
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label>Ngày sinh</label> <br />
+                                            <input id="NgaySinh" name="NgaySinh" style="field-validation-error" class="form-control p_input" type="text" value="">
+                                            <td>@Html.ValidationMessageFor(model => model.NgaySinh)</td>
+
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label>Username</label> <br />
+                                            <input id="UserName" name="UserName" style="field-validation-error" class="form-control p_input" type="text" value="">
+                                            <td>@Html.ValidationMessageFor(model => model.UserName)</td>
+
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Password</label> <br />
+                                            <input id="Password" name="Password" style="field-validation-error" class="form-control p_input" type="text" value="">
+
+                                            <td>@Html.ValidationMessageFor(model => model.Password)</td>
+
+                                        </div>
+
+                                        @if (ViewBag.ErrorInfo != null)
+                                        {
+                                            <p class="text-danger">@ViewBag.ErrorInfor</p>
+                                        }
+
+                                        <div class="text-center" style="margin-top:30px; justify-content: center; display: flex">
+                                            <input type="submit" class="btn btn-primary btn-block enter-btn" value="Register" style="height: 50px; width: 200px" />
+                                        </div>
+                                        <p style="margin-top:20px"> Bạn đã có tài khoản??? <a href="@Url.Action("Index","Login")">Login</a> </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                    </div>
+                    <!-- row ends -->
+                </div>
+                <!-- page-body-wrapper ends -->
+            </div>
+        }
+
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="~/Areas/Admin/Assets/vendors/js/vendor.bundle.base.js"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="~/Areas/Admin/Assets/js/off-canvas.js"></script>
+        <script src="~/Areas/Admin/Assets/js/hoverable-collapse.js"></script>
+        <script src="~/Areas/Admin/Assets/js/misc.js"></script>
+        <script src="~/Areas/Admin/Assets/js/settings.js"></script>
+        <script src="~/Areas/Admin/Assets/js/todolist.js"></script>
+        <!-- endinject -->
+
+    </div>
+</body>
+</html>

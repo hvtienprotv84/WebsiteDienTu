@@ -1,0 +1,99 @@
+﻿@model WebBanDoDienTu.Models.MatHang
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div>
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Bạn có thực sự muốn xóa mặt hàng này không!!!</h2>
+                <h4 class="card-title">Chi tiết mặt hàng</h4>
+
+                <form class="forms-sample">
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ID mặt hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.IDMH)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên mặt hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.TenMH)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Loại mặt hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.LoaiMatHang.TenLoaiMH)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Mô tả </label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.MoTa)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Mô tả chi tiết</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.MoTaChiTiet)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Đơn giá</label>
+                        <div class="col-sm-9 money">
+                            @Html.DisplayFor(model => model.DonGia) VND
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Ngày nhập hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.NgayNhapHang)
+                        </div>
+                    </div>
+                    @if (Model.HinhAnh1 != null)
+                    {
+                        <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hình ảnh1</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var base64 = Convert.ToBase64String(Model.HinhAnh1);
+                                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                }
+                                <img src='@imgSrc' style="width: 100px; height: 150px; border-radius:0%" />
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hình ảnh</label>
+                            <div class="col-sm-9">
+                                <p>không có hình ảnh</p>
+                            </div>
+                        </div>
+                    }
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button style="width:180px; type="submit" value="Delete" class="btn btn-primary mr-2">Delete</button>
+        </div>
+    }
+
+    <a href="~/Admin/AdminMatHangs/Index">
+        <button type="button" class="btn btn-outline-secondary btn-lg btn-block" style="width:300px; margin-top:40px">Trở về</button>
+    </a>
+</div>

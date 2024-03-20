@@ -1,0 +1,192 @@
+﻿@using WebBanDoDienTu.Models;
+@{
+    KhachHang khachhang = Session["KhachHang"] as KhachHang;
+
+
+}
+<header class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-2 col-lg-2">
+                <div class="header__logo">
+                    <a href="~/Home/Index">
+                        <img src="~/Images/Untitled-1.png" height="70px" width="50px" style="display:inline-block; padding-right:10px;margin-left:30px" />
+                        <h4 style="font-style:initial ;display:inline-block">TPhoneS</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-6" style="text-align:center">
+                <nav class="header__menu" style="margin-left:100px">
+                    <ul style="text-align:center">
+                        <li><a href="~/Home/index">Trang chủ</a></li>
+                        <li><a href="~/Shop/Index">Các sản phẩm</a></li>
+                        <li><a href="~/GioHang/show">Giỏ hàng</a></li>
+                        <li>
+                            <a href="#">Các đơn hàng</a>
+                            <ul class="dropdown" style="width:max-content">
+                                <li><a href="~/ThongBao/CacDonHangDangCho">Đơn hàng đang chờ</a></li>
+                                <li><a href="~/ThongBao/TatCaCacDonHang">Tất cả các đơn hàng</a></li>
+                                <li><a href="~/ThongBao/CacMatHangDaMua">Các mặt hàng đã mua</a></li>
+                            </ul>
+                        <li><a href="~/Home/LienHe">Liên Hệ</a></li>
+                        <li><img style="width:30px;height:30px" src="~/Images/3351480.png" /> <a href="~/Home/Chat">Chat Cộng Đồng</a></li>
+                        </li>
+                        @if (Session["KhachHang"] == null)
+                        {
+                            <li><a href="~/ThongBao/TimKiemDonDatHang">Tìm kiếm đơn hàng</a></li>
+                        }
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="header__right" style="margin-right:50px">
+
+                    @if (Session["SoLuongHangTrongGioHang"] != null)
+                    {
+                        <ul class="header__right__widget" style="margin-right:40px">
+                            <li>
+                                <a href="~/GioHang/show">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip">@Session["SoLuongHangTrongGioHang"]</div>
+                                </a>
+                            </li>
+                        </ul>
+                    }
+                    @if (Session["KhachHang"] == null)
+                    {
+                        <div class="header__right__auth">
+                            <a href="~/Login/Index">Login</a>
+                            <a href="~/Login/Register">Register</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="header__right__auth">
+
+                            <div class="dropdown">
+                                <p style="float:right; margin-top:5px; margin-left:10px">@khachhang.TenKH</p>
+                                <button class="dropbtn" />
+
+                                <div class="dropdown-content" style="width:max-content">
+                                    <ul style="list-style:none">
+                                        <li>
+                                            <a href="~/Login/Logout">
+                                                Logout
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/ThongTinCaNhan/Index">
+                                                Thông tin cá nhân
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+
+<style>
+    /* Dropdown Button */
+    .dropbtn {
+
+        background-image : url('@Url.Content("~/Images/user.png")');
+
+        background-color:white;
+        font-size: 12px;
+        border: none;
+       width:30px;
+       height:30px;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: floralwhite;
+            }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: floralwhite;
+    }
+</style>
+
+
+
+<span id="myBtn">
+    <img onclick="topFunction()" src='~/Images/backtotop.png' title="Lên Trang Đầu" style="width:160px;height:80px">
+</span>
+
+<style>
+    #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 10px;
+        right: 5px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+</style>
+
+
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>

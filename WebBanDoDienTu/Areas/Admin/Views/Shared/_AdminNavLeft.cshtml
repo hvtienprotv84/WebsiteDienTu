@@ -1,0 +1,200 @@
+﻿
+@using WebBanDoDienTu.Models;
+@{
+    Admin admin = (Admin)Session["Admin"];
+    if (admin == null)
+    {
+        <meta http-equiv="refresh" content="3; url = ~/AdminLogin/index" />
+    }
+
+}
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+        <a class="sidebar-brand brand-logo" href="~/Admin/AdminHome/Index" style="width:100%">
+            <img style="height: 30px; width:30px; float:left" src="~/Images/Untitled-1.png" />
+            <h5 style="color:white; margin-top:5px;margin-left:40px">TPhoneS</h5>
+        </a>
+
+        <a class="sidebar-brand brand-logo-mini" href="~/Admin/AdminHome/Index">
+            <p style="color:white; width:100%">
+                <img style="height: 42px; width:42px; float:left" src="~/Images/Untitled-1.png" />
+            </p>
+        </a>
+    </div>
+
+    <ul class="nav">
+        <li class="nav-item profile">
+            <div class="profile-desc">
+                <div class="profile-pic">
+                    <div class="count-indicator">
+                        <img class="img-xs rounded-circle " src="~/Images/user.png" alt="">
+                    </div>
+                    <div class="profile-name">
+                        <h5 class="mb-0 font-weight-normal">@Session["TenAdmin"]</h5>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+
+                    <a href="~/Admin/AdminsManager/Edit/@admin.IDAdmin" class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="mdi mdi-onepassword  text-info"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject ellipsis mb-1 text-small">Thay đổi mật khẩu</p>
+                        </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="~/Admin/AdminsManager/Details/@admin.IDAdmin" class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="mdi mdi-calendar-today text-success"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject ellipsis mb-1 text-small">Thông tin tài khoản</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </li>
+
+
+
+
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminHome/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Trang chủ</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-icon">
+                    <i class="mdi mdi-laptop"></i>
+                </span>
+                <span class="menu-title">Đơn đặt hàng</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminDonDatHangs/Index">Tất cả đơn hàng</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminDonDatHangs/DuyetDonDatHang">Duyệt đơn đặt hàng</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminDonDatHangs/PhanCongGiaoHang">Phân công giao hàng</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminDonDatHangs/GiaoHangThanhCong">Giao hàng thành công</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminDonDatHangs/GiaoHangKhongThanhCong">Giao hàng thất bại</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminDonDatHangs/DonHangCanXoa">Đơn hàng cần hủy</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminDonDatHangs/TatCaDonHangDaHuy">Tất cả đơn hàng đã hủy</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminChiTietDonDatHangs/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Chi tiêt đơn đặt hàng</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminMatHangs/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                </span>
+                <span class="menu-title">Mặt hàng</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminLoaiMatHangs/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-contacts"></i>
+                </span>
+                <span class="menu-title">Thể loại hàng</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminKhachHangs/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-chart-bar"></i>
+                </span>
+                <span class="menu-title">Khách hàng</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminPhuongThucThanhToans/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-chart-bar"></i>
+                </span>
+                <span class="menu-title">Phương thức thanh toán</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminTrangThais/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-file-document-box"></i>
+                </span>
+                <span class="menu-title">Trạng thái đơn hàng</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminNhanVien/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                </span>
+                <span class="menu-title">Nhân viên</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminsManager/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-contacts"></i>
+                </span>
+                <span class="menu-title">Tài khoản Admin</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="~/Admin/AdminMaGiamGia/Index">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Mã giảm giá</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <span class="menu-icon">
+                    <i class="mdi mdi-security"></i>
+                </span>
+                <span class="menu-title">Thống kê</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminThongKe/ThongKeDoanhThu"> Doanh thu </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminThongKe/ThongKeDoanhThuTheoKhachHang"> Theo khách hàng </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminThongKe/ThongKeDoanhThuTheoKhachHangLe"> Theo khách hàng lẻ </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="~/Admin/AdminThongKe/ThongKeDoanhThuTheoSanPham"> Theo sản phẩm </a></li>                   
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+

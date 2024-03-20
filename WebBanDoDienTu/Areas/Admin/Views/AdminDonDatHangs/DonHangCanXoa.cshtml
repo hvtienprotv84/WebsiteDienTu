@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebBanDoDienTu.Models.DonDatHang>
+@{
+    ViewBag.Title = "DonHangCanXoa";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Danh sách đơn đặt hàng (Đơn hàng cần hủy)</h2>
+
+
+            <h4 style="margin-top:30px">Tìm kiếm đơn đặt hàng</h4>
+            <form>
+                <div>
+
+                    <input type="text" class="form-control" placeholder="Tìm kiếm theo tên khách hàng" name="tenKH" style="width:25%; display:inline-block;margin-right:10px">
+
+                    <!--<input type="text" class="form-control" placeholder="Số điện thoại" name="SDT" style="width: 30%; display: inline-block; margin-right: 10px">-->
+                    
+
+                    <br />
+                    <div style="display:inline-block;margin-top:20px;margin-right:30px">
+                        <h4>Ngày bắt đầu</h4>
+                        <input type="date" class="form-control" placeholder="Ngày bắt đầu" name="NgayBatDau" style="width: 300px">
+                    </div>
+                    <div style="display:inline-block">
+                        <h4>Ngày kết thúc</h4>
+                        <input type="date" class="form-control" placeholder="Ngày kết thúc" name="NgayKetThuc" style="width: 300px">
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-fw" style="margin-top:20px">tìm kiếm</button>
+                </div>
+            </form>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="color:white">
+                                Khách hàng có tài khoản
+                            </th>
+                            <th style="color:white">
+                                SDT có tài khoản
+                            </th>
+                            <th style="color:white">
+                                Khách lẻ
+                            </th>
+                            <th style="color:white">
+                                SDT khách lẻ
+                            </th>
+                            <th style="color:white">
+                                Ngày mua
+                            </th>
+                            <th style="color:white">
+                                Trạng thái
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KhachHang.SDT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenKHKhongAccount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DienThoaiKhongAccount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgayMua)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TrangThai.TenTrangThai)
+                                </td>
+
+                                <td>
+                                    <a href="~/Admin/AdminDonDatHangs/Delete/@item.IDDDH">
+                                        <button style="min-width:50px" type="button" class="btn btn-outline-warning btn-fw">Xóa đơn hàng</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

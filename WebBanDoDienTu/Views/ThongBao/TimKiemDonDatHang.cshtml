@@ -1,0 +1,248 @@
+﻿@model IEnumerable<WebBanDoDienTu.Models.DonDatHang>
+@using WebBanDoDienTu.Models;
+@{
+    ViewBag.Title = "Tìm kiếm đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Shop Cart Section Begin -->
+<section class="shop-cart spad">
+    <div class="container">
+        <h2 style="margin-bottom: 50px; text-align: center">Tất cả các đơn hàng</h2>
+        <div class="row">
+            <div class="col-lg-12">
+
+                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm đơn đặt hàng theo số điện thoại" name="SoDienThoai">
+                </form>
+
+                <div class="shop__cart__table">
+                    @if (Model == null )
+                    {
+                        <h3 style="text-align:center">Không có đơn đặt hàng nào được tìm thấy</h3>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="Large_table">
+
+                                @using (Html.BeginForm("HuyDonHangKhachLe", "ThongBao"))
+                                {
+                                    <table class="dondathang">
+                                        <thead>
+                                            <tr>
+                                                <th>ID đơn đặt hàng</th>
+                                                <th>Ngày mua</th>
+                                                <th>Trạng thái</th>
+                                                <th>Tổng số lượng</th>
+                                                <th>Tổng tiền</th>
+                                                <th>PTTT</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                                <input type="hidden" value="@item.IDDDH" name="ID DonDatHang" />
+                                                <td class="cart__product__item__title">@Html.DisplayFor(Model => item.IDDDH)  </td>
+                                                <td class="cart__product__item__title">@Html.DisplayFor(Model => item.NgayMua)  </td>
+                                                <td class="cart__product__item__title">@Html.DisplayFor(Model => item.TrangThai.TenTrangThai)</td>
+                                                <td class="cart__product__item__title">@Html.DisplayFor(Model => item.TongSoluong)  </td>
+                                                <td class="cart__product__item__title money">@Html.DisplayFor(Model => item.TongTien) VND  </td>
+                                                <td class="cart__product__item__title">@Html.DisplayFor(Model => item.PhuongThucThanhToan.TenPT)</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    if (item.TrangThai.IDTrangThai == 1)
+                                    {
+                                        <div class="btnhuy" style="margin-top:20px">
+                                            <input type="submit" name="HuyDonHang" value="Hủy đơn hàng" class="site-btn">
+                                        </div>
+                                    }
+
+                                }
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align:left">Tên mặt hàng</th>
+                                            <th>Loại mặt hàng</th>
+                                            <th>Đơn giá</th>
+                                            <th>Số lượng</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var items in item.ChiTietDonDatHangs)
+                                        {
+                                            <tr>
+                                                <td class="cart__product__item__title" style="text-align:left">@Html.DisplayFor(Model => items.MatHang.TenMH)</td>
+                                                <td class="cart__product__item__title">@Html.DisplayFor(Model => items.MatHang.LoaiMatHang.TenLoaiMH)  </td>
+                                                <td class="cart__price money">@Html.DisplayFor(Model => items.MatHang.DonGia)  </td>
+                                                <td class="cart__product__item__title">@Html.DisplayFor(Model => items.SoluongMH)  </td>
+
+                                                <td>
+                                                    @using (Html.BeginForm("DanhGiaKhachLe", "ThongBao"))
+                                                    {
+                                                        if (item.TrangThai.IDTrangThai == 4 && item.TrangThaiThanhToan == true)
+                                                        {
+                                                            if (items.BinhLuan == null || items.DanhGiaSanPham == null)
+                                                            {
+
+                                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#DanhGia-@items.IDChiTietDDH-@items.IDMH">Đánh giá mặt hàng</button>
+                                                                <!-- Modal -->
+                                                                <div id="DanhGia-@items.IDChiTietDDH-@items.IDMH" class="modal fade" role="dialog">
+                                                                    <div class="modal-dialog">
+
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">Đánh giá sản phẩm</h4>
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+
+                                                                                <input type="hidden" name="IDChiTietDonDatHang" value="@items.IDChiTietDDH" />
+
+                                                                                <div class="rate">
+                                                                                    <input type="radio" id="star5" name="rate" value="5" />
+                                                                                    <label for="star5" title="text">5 stars</label>
+                                                                                    <input type="radio" id="star4" name="rate" value="4" />
+                                                                                    <label for="star4" title="text">4 stars</label>
+                                                                                    <input type="radio" id="star3" name="rate" value="3" />
+                                                                                    <label for="star3" title="text">3 stars</label>
+                                                                                    <input type="radio" id="star2" name="rate" value="2" />
+                                                                                    <label for="star2" title="text">2 stars</label>
+                                                                                    <input type="radio" id="star1" name="rate" value="1" />
+                                                                                    <label for="star1" title="text">1 star</label>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <input class="binhluan" type="text" name="BinhLuan" placeholder="Nhận xét của bạn về sản phẩm" />
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                            <div class="button">
+                                                                                <input type="submit" name="update" value="Đánh giá" class="site-btn" style="text-align:center" />
+                                                                            </div>
+                                                                            <div class="modal-footer">
+
+                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Cart Section End -->
+
+<style>
+    .btnhuy {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .Large_table {
+        padding: 40px;
+        border: solid 3px;
+        border-radius: 10px 10px 10px 10px;
+        margin-bottom: 20px;
+    }
+
+    .dondathang {
+        color: red;
+    }
+
+    td {
+        text-align: center;
+        margin: 5px;
+    }
+
+    th {
+        margin: 5px;
+        text-align: center;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .binhluan {
+        height: 35px;
+        width: 50%;
+        border-radius: 5px;
+        padding: 0 20px 0 20px;
+        margin: 0 20px 0 20px;
+    }
+
+    .Large_table {
+        padding: 40px;
+        border: solid 3px;
+        border-radius: 10px 10px 10px 10px;
+        margin-bottom: 20px;
+    }
+
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+        padding: 0 20px 0 20px;
+    }
+
+        .rate:not(:checked) > input {
+            position: absolute;
+            top: -9999px;
+        }
+
+        .rate:not(:checked) > label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+            .rate:not(:checked) > label:before {
+                content: '★ ';
+            }
+
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+</style>

@@ -1,0 +1,166 @@
+﻿@model WebBanDoDienTu.Models.DonDatHang
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Bạn muốn chỉnh sửa thông tin đơn đặt hàng</h4>
+
+                <form class="forms-sample">
+                    <div class="form-group row">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.IDDDH)
+                        @Html.HiddenFor(model => model.IDKH)
+                        @Html.HiddenFor(model => model.NgayMua)
+                        @Html.HiddenFor(model => model.TongSoluong)
+                        @Html.HiddenFor(model => model.TongTien)
+
+                        @Html.HiddenFor(model => model.TenKHKhongAccount)
+                        @Html.HiddenFor(model => model.DienThoaiKhongAccount)
+
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Khách hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.KhachHang.TenKH)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Ngày đặt hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.NgayMua)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Địa chỉ nhận hàng</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.DiaChiNhanHang, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaChiNhanHang, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Tổng số lượng mặt hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.TongSoluong)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Tổng tiền</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.TongTien)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Phương thức thanh toán</label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("IDPT", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IDPT, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Trạng thái đơn hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("IDTrangThai", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IDTrangThai, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Trạng thái thanh toán</label>
+                        <div class="col-sm-9">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.TrangThaiThanhToan, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TrangThaiThanhToan, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Ngày thanh toán </label>
+                        <div class="col-sm-9">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.NgayThanhToan, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TrangThaiThanhToan, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Tên khách hàng lẻ</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.TenKHKhongAccount)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Số điện thoại khách lẻ</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.DienThoaiKhongAccount)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Ghi chú</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Nhân viên giao hàng</label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("IDNhanVien", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IDNhanVien, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <button style="width:100px; type="submit" value="Save" class="btn btn-primary mr-2">Save</button>
+
+                    <br />
+                    <a href="~/Admin/AdminDonDatHangs/DuyetDonDatHang">
+                        <button type="button" class="btn btn-outline-light btn-fw" style="width:300px;height:40px; margin-top:40px">Trở về trang duyệt đơn hàng</button>
+                    </a>
+
+                    <a href="~/Admin/AdminDonDatHangs/PhanCongGiaoHang">
+                        <button type="button" class="btn btn-outline-light btn-fw" style="width: 300px; height: 40px; margin-top: 20px">Trở về trang phân công giao hàng</button>
+                    </a>
+
+                    <a href="~/Admin/AdminDonDatHangs/GiaoHangThanhCong">
+                        <button type="button" class="btn btn-outline-light btn-fw" style="width: 300px; height: 40px; margin-top: -185px;margin-left:310px">Trở về trang giao hàng thành công</button>
+                    </a>
+
+                    <a href="~/Admin/AdminDonDatHangs/GiaoHangKhongThanhCong">
+                        <button type="button" class="btn btn-outline-light btn-fw" style="width: 300px; height: 40px; margin-top: -115px;margin-left:310px">Trở về trang giao hàng thất bại</button>
+                    </a>
+                    <a href="~/Admin/AdminDonDatHangs/Index">
+                        <button type="button" class="btn btn-outline-secondary btn-lg btn-block" style="width:610px; margin-top:40px">Trở về trang quản lý đơn đặt hàng</button>
+                    </a>
+
+                    <a href="~/Admin/AdminDonDatHangs/DonHangCanXoa">
+                        <button type="button" class="btn btn-outline-light btn-fw" style="width: 300px; height: 40px; margin-top: -220px">Trở về trang đơn hàng cần hủy</button>
+                    </a>
+
+                    <a href="~/Admin/AdminDonDatHangs/TatCaDonHangDaHuy">
+                        <button type="button" class="btn btn-outline-light btn-fw" style="width: 300px; height: 40px; margin-top: -270px; margin-left: 310px">Trở về trang tất cả đơn hàng đã hủy</button>
+                    </a>
+
+                    <!--<a href="~/Admin/AdminDonDatHangs/Index">
+    <button type="button" class="btn btn-outline-secondary btn-lg btn-block" style="width:500px; margin-top:40px">Trở về trang quản lý đơn đặt hàng</button>
+    </a>-->
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+

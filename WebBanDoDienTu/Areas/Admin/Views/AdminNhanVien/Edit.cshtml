@@ -1,0 +1,79 @@
+﻿@model WebBanDoDienTu.Models.NhanVien
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Bạn muốn chỉnh sửa thông tin nhân viên</h4>
+
+                <form class="forms-sample">
+                    <div class="form-group row">
+                        @Html.HiddenFor(model => model.IDNhanVien)
+
+
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên nhân viên</label>
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(model => model.IDNhanVien)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên nhân viên</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.TenNhanVien, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TenNhanVien, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Số điện thoại</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Địa chỉ</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Chức vụ</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.ChucVu, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <button style="width:100px; type="submit" value="Save" class="btn btn-primary mr-2">Save</button>
+
+                    <a href="~/Admin/AdminNhanVien/Index">
+                        <button type="button" class="btn btn-outline-secondary btn-lg btn-block" style="width:300px; margin-top:40px">Trở về</button>
+                    </a>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+}

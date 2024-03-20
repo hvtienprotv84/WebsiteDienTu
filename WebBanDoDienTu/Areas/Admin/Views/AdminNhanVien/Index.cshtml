@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WebBanDoDienTu.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Danh sách nhân viên</h2>
+
+            <a href="~/Admin/AdminNhanVien/Create">
+                <button type="button" class="btn btn-primary btn-fw">Tạo một nhân viên mới</button>
+            </a>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="color:white">
+                                Tên nhân viên
+                            </th>
+                            <th style="color:white">
+                                Email
+                            </th>
+                            <th style="color:white">
+                                Ngày sinh
+                            </th>
+                            <th style="color:white">
+                                Địa chỉ
+                            </th>
+                            <th style="color:white">
+                                Chức vụ
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenNhanVien)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SDT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaChi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ChucVu)
+                                </td>
+                                <td>
+                                    <a href="~/Admin/AdminNhanVien/Details/@item.IDNhanVien">
+                                        <button style="min-width:50px" type="button" class="btn btn-outline-success btn-fw">Details</button>
+                                    </a>
+                                    <a href="~/Admin/AdminNhanVien/Edit/@item.IDNhanVien">
+                                        <button style="min-width:50px" type="button" class="btn btn-outline-warning btn-fw">Edit</button>
+                                    </a>
+                                    <a href="~/Admin/AdminNhanVien/Delete/@item.IDNhanVien">
+                                        <button style="min-width:50px" type="button" class="btn btn-outline-danger btn-fw">Delete</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

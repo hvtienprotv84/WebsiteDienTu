@@ -1,0 +1,94 @@
+﻿@model WebBanDoDienTu.Models.KhachHang
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section class="contact spad">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6">
+                <h2 style="margin-bottom:60px">Thông tin cá nhân</h2>
+                <div class="contact__content">
+                    <div class="contact__address">
+
+                        <ul>
+
+                            <li>
+                                <h6 style="display:inline-block"><i class="fa fa-navicon"></i> Tên: </h6>
+                                <p style="display:inline-block">@Model.TenKH</p>
+                            </li>
+
+                            <li>
+                                <h6 style="display:inline-block"><i class="fa fa-phone"></i> Số điện thoại: </h6>
+                                <p style="display:inline-block">@Model.SDT</p>
+                            </li>
+                            <li>
+                                <h6 style="display:inline-block"><i class="fa fa-navicon"></i> Ngày Sinh: </h6>
+                                <p style="display:inline-block">@Model.NgaySinh</p>
+                            </li>
+                            <li>
+                                <h6 style="display:inline-block"><i class="fa fa-map-marker"></i> Địa chỉ giao hàng 1: </h6>
+                                <p style="display:inline-block">@Model.DiaChiGiaoHang1</p>
+                            </li>
+                            <li>
+                                <h6 style="display:inline-block"><i class="fa fa-map-marker"></i> Địa chỉ giao hàng 2: </h6>
+                                <p style="display:inline-block">@Model.DiaChiGiaoHang2</p>
+                            </li>
+                            <li>
+                                <h6 style="display:inline-block"><i class="fa fa-navicon"></i> Email: </h6>
+                                <p style="display:inline-block">@Model.Email</p>
+                            </li>
+                            <li>
+                                <h6 style="display:inline-block"><i class="fa fa-navicon"></i> Hạng của khách hàng:</h6>
+                                <p style="display:inline-block">@Model.LoaiKhachHang</p>
+                            </li>
+                            <li>
+                                <h6 style="display:inline-block"><i class="fa fa-navicon"></i> Số điểm hiện tại:  </h6>
+                                <p style="display:inline-block">@Model.DiemTichLuyConLai</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="/ThongTinCaNhan/CapNhatThongTinCaNhan"> <button type="button" class="site-btn">Cập nhât thông tin cá nhân</button></a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+                <h2 style="margin-bottom:60px">Thay đổi mật khẩu</h2>
+                <div class="contact__content">
+
+
+                    @using (Html.BeginForm("ChangePassword", "ThongTinCaNhan", FormMethod.Post, new { enctype = "multipart/formdata" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="contact__form">
+                        <!--<input type="password" placeholder="Old password" name="Old password">-->
+                        <input type="password" placeholder="Mật Khẩu Hiện Tại" name="Mật Khẩu Hiện Tại">
+                        @Html.ValidationMessageFor(model => model.Password)
+                        <!--<input type="password" placeholder="New passwrod" name="New password">-->
+                        <input type="password" placeholder="Nhập Mật Khẩu Mới" name="New password">
+                        @Html.ValidationMessageFor(model => model.Password)
+                        <!--<input type="password" placeholder="Confirm password" name="Confirm password">-->
+                        <input type="password" placeholder="Xác Nhận Lại Mật Khẩu" name="Confirm password">
+                        <!--<button type="submit" value="ChangePassword" class="site-btn">Change password</button>-->
+                        <button type="submit" value="ChangePassword" class="site-btn">Thay Đổi Mật Khẩu</button>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+<style>
+    input {
+        width: 500px;
+        height: 50px;
+        margin-bottom: 30px;
+    }
+</style>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="88555b37008f4c57b2ee68716a2b8686" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.Admin" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.ChiTietDonDatHang" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.DonDatHang" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.KhachHang" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.LoaiMatHang" Width="1.5" PointX="9.375" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.MaGiamGia" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.MatHang" Width="1.5" PointX="5.875" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.NhanVien" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.PhuongThucThanhToan" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanDoDienTuModel.TrangThai" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="WebBanDoDienTuModel.FK_CHITIETDONDATHANG_DONDATHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanDoDienTuModel.FK_CHITIETDONDATHANG_MATHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanDoDienTuModel.FK_DONDATHANG_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanDoDienTuModel.FK_DONDATHANG_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanDoDienTuModel.FK_DONDATHANG_PHUONGTHUC" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanDoDienTuModel.FK_DONDATHANG_TRANGTHAI" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanDoDienTuModel.FK_MATHANG_LOAIMATHANG" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

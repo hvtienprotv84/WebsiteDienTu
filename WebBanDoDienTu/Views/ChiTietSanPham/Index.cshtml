@@ -1,0 +1,231 @@
+﻿@using WebBanDoDienTu.Models
+@model WebBanDoDienTu.Models.MatHang
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<MatHang> banner = ViewBag.banner;
+    List<MatHang> newProduct = ViewBag.newProduct;
+}
+
+
+
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__left product__thumb nice-scroll">
+                        <a class="pt active" href="#product-1">
+
+                            @{
+                                var base641 = Convert.ToBase64String(Model.HinhAnh1);
+                                var imgSrc1 = String.Format("data:image/gif;base64,{0}", base641);
+                            }
+                            <img src='@imgSrc1' />
+                        </a>
+                        <a class="pt" href="#product-2">
+                            @{
+                                var base642 = Convert.ToBase64String(Model.HinhAnh2);
+                                var imgSrc2 = String.Format("data:image/gif;base64,{0}", base642);
+                            }
+                            <img src='@imgSrc2' />
+
+                        </a>
+                        <a class="pt" href="#product-3">
+                            @{
+                                var base643 = Convert.ToBase64String(Model.HinhAnh3);
+                                var imgSrc3 = String.Format("data:image/gif;base64,{0}", base643);
+                            }
+                            <img src='@imgSrc3' />
+                        </a>
+                        <a class="pt" href="#product-4">
+                            @{
+                                var base644 = Convert.ToBase64String(Model.HinhAnh4);
+                                var imgSrc4 = String.Format("data:image/gif;base64,{0}", base644);
+                            }
+                            <img src='@imgSrc4' />
+                        </a>
+                    </div>
+                    <div class="product__details__slider__content">
+                        <div class="product__details__pic__slider owl-carousel">
+                            <img data-hash="product-1" class="product__big__img" src="@imgSrc1" alt="">
+                            <img data-hash="product-2" class="product__big__img" src="@imgSrc2" alt="">
+                            <img data-hash="product-3" class="product__big__img" src="@imgSrc3" alt="">
+                            <img data-hash="product-4" class="product__big__img" src="@imgSrc4" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product__details__text">
+                    <h3>@Model.TenMH </h3>
+
+                    <div class="product__details__price money" style="font-size:22px">@Model.DonGia VND </div>
+                    <p>
+                        @Model.MoTa
+                    </p>
+                    <div class="product__details__button">
+                        @if (Session["KhachHang"] != null)
+                        {
+                            <a href="~/GioHang/Addto/@Model.IDMH" class="cart-btn"><span class="icon_bag_alt"></span> Thêm vào giỏ hàng</a>
+                        }
+                        else
+                        {
+                            <a href="~/GioHangKhachLe/Addto/@Model.IDMH" class="cart-btn"><span class="icon_bag_alt"></span> Thêm vào giỏ hàng</a>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Mô tả sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Bình luận</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <h6>Mô tả</h6>
+                            <p>
+                                @Model.MoTaChiTiet
+                            </p>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <h6>Bình luận của khách hàng </h6>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <!--<h6>Specification</h6>-->
+
+                                <table>
+
+                                    @foreach (ChiTietDonDatHang item in ViewBag.BinhLuan)
+                                    {
+                                        if (item.BinhLuan != null || item.DanhGiaSanPham != null)
+                                        {
+
+
+                                            if (item.DonDatHang.IDKH == null)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <h5>
+                                                            @item.DonDatHang.TenKHKhongAccount
+                                                        </h5>
+                                                        <h6 style="display:inline-block">@item.DanhGiaSanPham ★</h6>
+                                                        <p>
+                                                            Bình luận: @item.BinhLuan
+                                                        </p>
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <h5>
+                                                            @item.DonDatHang.KhachHang.TenKH
+                                                        </h5>
+                                                        <p>
+                                                            @item.BinhLuan
+                                                            <br />
+                                                            @item.DanhGiaSanPham ★ sao
+                                                            <img style="width:20px;height:20px ;margin-top:-5px" src="~/Images/star1.png" />
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--de xuat samsung s23ultra-->
+    <div class="categories__text">
+        <h4 style="color:red;margin-left:570px">Đề Xuất Thêm Sản Phẩm Tương Tự</h4>
+        </br>
+        <img style="width: 200px; height: 190px; margin-left: 100px; margin-top: 20px"
+             src="~/Images/sss23ul.jpg"
+             alt="realme">
+        <h4 style="margin-left: 100px; margin-top: 20px; text-transform: uppercase;  margin-bottom: 12px;font-size:15px">
+            SAMSUNG GALAXY S23 ULTRA
+        </h4>
+        <h4 style="color: #ca1515; font-weight: 600; margin-bottom: 20px; margin-left: 100px ">26,000,000</h4>
+
+        <a style="margin-left: 100px" href="~/ChiTietSanPham/Index/9">Xem Thêm</a>
+    </div>
+    <!--de xuat iphone 14 pro max-->
+    <div style="margin-left:300px; margin-top:-335px">
+        <div class="categories__text">
+            <img style="width: 200px; height: 190px; margin-left: 100px; margin-top: 20px"
+                 src="~/Images/ip14pm.jpg"
+                 alt="realme">
+            <h4 style="margin-left: 100px; margin-top: 20px; text-transform: uppercase;  margin-bottom: 12px;font-size:15px">
+                IPHONE 14 PROMAX
+            </h4>
+            <h4 style="color: #ca1515; font-weight: 600; margin-bottom: 20px; margin-left: 100px ">27,000,000</h4>
+
+            <a style="margin-left: 100px" href="~/ChiTietSanPham/Index/1">Xem Thêm</a>
+        </div>
+    </div>
+    <!--de xuat-->
+    <div style="margin-left:580px; margin-top:-335px">
+        <div class="categories__text">
+            <img style="width: 200px; height: 190px; margin-left: 100px; margin-top: 20px"
+                 src="~/Images/OPPO-Find-N2-Flip-MoonlitPurpleLrg2x-removebg-preview.png"
+                 alt="realme">
+            <h4 style="margin-left: 100px; margin-top: 20px; text-transform: uppercase;  margin-bottom: 12px;font-size:15px">
+                OPPO Find N2 Flip
+            </h4>
+            <h4 style="color: #ca1515; font-weight: 600; margin-bottom: 20px; margin-left: 100px ">65,300,000</h4>
+
+            <a style="margin-left: 100px" href="~/ChiTietSanPham/Index/7">Xem Thêm</a>
+        </div>
+    </div>
+    <!--de xuat-->
+    <div style="margin-left:880px; margin-top:-335px">
+        <div class="categories__text">
+            <img style="width: 200px; height: 190px; margin-left: 100px; margin-top: 20px"
+                 src="~/Images/Ro-ri-thong-so-ky-thuat-Realme-9-5G-Camera-48MP-Dimensity-810-va-The-Pixel2-removebg-preview.png"
+                 alt="realme">
+            <h4 style="margin-left: 100px; margin-top: 20px; text-transform: uppercase;  margin-bottom: 12px;font-size:15px">
+                REALME 9 PRO+ 5G
+            </h4>
+            <h4 style="color: #ca1515; font-weight: 600; margin-bottom: 20px; margin-left: 100px ">20,000,000</h4>
+
+            <a style="margin-left: 100px" href="~/ChiTietSanPham/Index/10">Xem Thêm</a>
+        </div>
+    </div>
+    <!--de xuat-->
+    <div style="margin-left:1160px; margin-top:-335px">
+        <div class="categories__text">
+            <img style="width: 200px; height: 190px; margin-left: 100px; margin-top: 20px"
+                 src="~/Images/Xiaomi-13-Ultra-2-removebg-preview.png"
+                 alt="realme">
+            <h4 style="margin-left: 100px; margin-top: 20px; text-transform: uppercase;  margin-bottom: 12px;font-size:15px">
+                Xiaomi 13 Ultra
+            </h4>
+            <h4 style="color: #ca1515; font-weight: 600; margin-bottom: 20px; margin-left: 100px ">8,000,000</h4>
+            <a style="margin-left: 100px" href="~/ChiTietSanPham/Index/5">Xem Thêm</a>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+
+
+

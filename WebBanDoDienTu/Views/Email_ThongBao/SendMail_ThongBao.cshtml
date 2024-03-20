@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "SendMail_ThongBao";
+}
+
+<h2>SendMail_ThongBao</h2> <hr />
+@if(ViewBag.msg!=null)
+{
+    <div class="alert alert-success">@ViewBag.msg</div>
+}
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="input-group col-md-3">
+        <input type="text" name="usermail"class="form-control" />
+        <div class="input-group-btn">
+            <button class="btn btn-outline-warning btn-fw" type="submit">
+                <i class="glyphicon glyphicon-send"></i>
+            </button>
+        </div>
+    </div>
+}
+<hr />

@@ -1,0 +1,106 @@
+﻿@using WebBanDoDienTu.Models;
+@{
+    ViewBag.Title = "TatCaCacDonHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<DonDatHang> listhoadon = ViewBag.tatcacacdonhang;
+}
+
+<!-- Shop Cart Section Begin -->
+<section class="shop-cart spad">
+    <div class="container">
+        <h2 style="margin-bottom: 50px; text-align: center">Tất cả các đơn hàng</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shop__cart__table">
+                    @foreach (var item in listhoadon)
+                    {
+                        <div class="Large_table">
+                            <table class="hoadon">
+                                <thead>
+                                    <tr>
+                                        <th>ID hóa đơn</th>
+                                        <th>Ngày mua</th>
+                                        <th>Trạng thái</th>
+                                        <th>Tổng số lượng</th>
+                                        <th>Tổng tiền</th>
+                                        <th>PTTT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <input type="hidden" value="@item.IDDDH" name="ID DonDatHang" />
+                                        <td class="cart__product__item__title">@Html.DisplayFor(Model => item.IDDDH)  </td>
+                                        <td class="cart__product__item__title">@Html.DisplayFor(Model => item.NgayMua)  </td>
+                                        <td class="cart__product__item__title">@Html.DisplayFor(Model => item.TrangThai.TenTrangThai)</td>
+                                        <td class="cart__product__item__title">@Html.DisplayFor(Model => item.TongSoluong)  </td>
+                                        <td class="cart__product__item__title money">@Html.DisplayFor(Model => item.TongTien) VND  </td>
+                                        <td class="cart__product__item__title">@Html.DisplayFor(Model => item.PhuongThucThanhToan.TenPT)</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">Tên mặt hàng</th>
+                                        <th>Loại mặt hàng</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var items in item.ChiTietDonDatHangs)
+                                    {
+                                        <tr>
+                                            <td class="cart__product__item__title" style="text-align:left">@Html.DisplayFor(Model => items.MatHang.TenMH)</td>
+                                            <td class="cart__product__item__title">@Html.DisplayFor(Model => items.MatHang.LoaiMatHang.TenLoaiMH)  </td>
+                                            <td class="cart__price money">@Html.DisplayFor(Model => items.MatHang.DonGia)  </td>
+                                            <td class="cart__product__item__title">@Html.DisplayFor(Model => items.SoluongMH)  </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Cart Section End -->
+
+<style>
+    .btnhuy {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .Large_table {
+        padding: 40px;
+        border: solid 3px;
+        border-radius: 10px 10px 10px 10px;
+        margin-bottom: 20px;
+    }
+
+    .hoadon {
+        color: red;
+    }
+
+    td {
+        text-align: center;
+        margin: 5px;
+    }
+
+    th {
+        margin: 5px;
+        text-align: center;
+    }
+</style>

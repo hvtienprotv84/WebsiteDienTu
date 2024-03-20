@@ -1,0 +1,100 @@
+﻿@model WebBanDoDienTu.Models.MatHang
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm("Create", "AdminMatHangs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Tạo một mặt hàng mới</h4>
+                <form class="forms-sample">
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên mặt hàng</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.TenMH, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TenMH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Loại mặt hàng</label>
+                        <div class="col-md-9">
+                            @Html.DropDownList("IDLoaiMH", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IDLoaiMH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Mô tả</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Mô tả chi tiết</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.MoTaChiTiet, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MoTaChiTiet, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Đơn giá</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Ngày nhập hàng</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.NgayNhapHang, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NgayNhapHang, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Số lượng</label>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hình ảnh 1</label>
+                        <div class="col-sm-9">
+                            <input type="file" name="UploadImage1" />
+                            @Html.ValidationMessageFor(model => model.HinhAnh1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hình ảnh 2</label>
+                        <div class="col-sm-9">
+                            <input type="file" name="UploadImage2" />
+                            @Html.ValidationMessageFor(model => model.HinhAnh2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hình ảnh 3</label>
+                        <div class="col-sm-9">
+                            <input type="file" name="UploadImage3" />
+                            @Html.ValidationMessageFor(model => model.HinhAnh3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hình ảnh 4</label>
+                        <div class="col-sm-9">
+                            <input type="file" name="UploadImage4" />
+                            @Html.ValidationMessageFor(model => model.HinhAnh4, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <button style="width:100px; type="submit" value="Create" class="btn btn-primary mr-2">Create</button>
+                    <a href="~/Admin/AdminMatHangs/Index">
+                        <button type="button" class="btn btn-outline-secondary btn-lg btn-block" style="width:300px; margin-top:40px">Trở về</button>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+}

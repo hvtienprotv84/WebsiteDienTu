@@ -1,0 +1,257 @@
+﻿@using WebBanDoDienTu.Models;
+
+@{
+    ViewBag.Title = "Home Page";
+    List<MatHang> banner = ViewBag.banner;
+    List<MatHang> newProduct = ViewBag.newProduct;
+    Page.Title = "title";
+
+}
+
+
+
+<!-- Banner Section Begin -->
+<section class="banner set-bg" style="background-image: url(@Url.Content("~/Images/iPhone-14-Pro-5g-d2.png"))">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-7 col-lg-8 m-auto">
+                <div class="banner__slider owl-carousel">
+                    @* lay 3 san pham moi nhat*@
+                    @foreach (MatHang item in banner)
+                    {
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span>Đâu là sự lựa chọn tốt nhất</span>
+                                <h1>@item.TenMH</h1>
+                                <div>
+
+                                    @{
+                                        var base64 = Convert.ToBase64String(item.HinhAnh1);
+                                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                    }
+                                    <!--<img src='@imgSrc' width="262px" height="262px" alt="Alternate Text" />-->
+                                </div>
+                                <a href="~/ChiTietSanPham/Index/@item.IDMH">Shop now</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Banner Section End -->
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div class="section-title" style="width:500px">
+                    <h4 style="color:red">Những sản phẩm mới nhất</h4>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row property__gallery">
+            @foreach (MatHang item in newProduct)
+            {
+                <a href="~/ChiTietSanPham/Index/@item.IDMH">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="product__item">
+                            <div>
+
+                                @{
+                                    var base64 = Convert.ToBase64String(item.HinhAnh1);
+                                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                }
+                                <img src='@imgSrc' width="262px" height="262px" alt="Alternate Text" />
+
+                            </div>
+                            <div class="product__item__text">
+                                <h6><a href="#">@item.TenMH</a></h6>
+                                <div class="product__price money">@item.DonGia VND</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Product Section End -->
+<!-- Categories Section Begin -->
+<div class="categories__text">
+    <h4 style="color:red;margin-left:570px">POPULAR PHONE BRANDS</h4>
+</div>
+<div class="logo_smartphone" style="margin-top:30px">
+    <a href="https://www.apple.com/vn/"
+       rel="nofollow">
+        <img style="width: 200px; height: 120px; margin-top: -9px;margin-left:80px"
+             src="~/Images/apple-iphone-logo-png-1.png"
+             alt="iphone">
+    </a>
+    <a href="https://www.samsung.com/vn/"
+       rel="nofollow">
+        <img style="width: 200px; height: 120px; margin-top: -9px; margin-left: -3px "
+             src="~/Images/dmx1625345861.jpg"
+             alt="samsung">
+    </a>
+    <a href="https://www.mi.com/vn"
+       rel="nofollow">
+        <img style="width: 200px; height: 120px; margin-top: -9px; margin-left: -3px "
+             src="~/Images/xiaomi-gay-tranh-cai-voi-logo-moi--3-760x367-removebg-preview.png"
+             alt="xiaomi">
+    </a>
+    <a href="https://www.oppo.com/vn/"
+       rel="nofollow">
+        <img style="width: 200px; height: 120px; margin-top: -9px; margin-left: -4px; margin-right: 30px "
+             src="~/Images/oppo-logo-old_600x277.jpg"
+             alt="oppo">
+    </a>
+    <a href="https://www.vivo.com/vn"
+       rel="nofollow">
+        <img style="width: 100px; height: 120px; margin-top: -40px; margin-left: -3px;margin-right:30px"
+             src="~/Images/Vivo-Logo-PNG-1.png"
+             alt="vivo">
+    </a>
+    <a href="https://www.realme.com/vn/"
+       rel="nofollow">
+        <img style="width: 200px; height: 120px; margin-top: -40px; margin-left: -4px"
+             src="~/Images/realme-logo.jpg"
+             alt="realme">
+    </a>
+    <a href="https://www.nokia.com/phones/vi_vn"
+       rel="nofollow">
+        <img style="width: 200px; height: 120px; margin-top: -30px; margin-left: -4px"
+             src="~/Images/https___www.nokia.com_sites_default_files_styles_scale_1920_no_crop_public_2023-02_nokia-refreshed-logo-1_1.jpg"
+             alt="nokia">
+    </a>
+</div>
+<div>
+    <video width="1250px" height="400px" style="margin-left:170px;margin-top:20px" autoplay loop muted src="~/Images/Introducing Dynamic Island on iPhone 14 Pro - Apple.mp4"></video>
+</div>
+</br>
+<div class="categories__text">
+    <h4 style="color:red;margin-left:580px"> COLLECTION SMARTPHONE</h4>
+</div>
+</br>
+<section class="categories">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <div class="categories__item categories__large__item set-bg" style="background-color: #f4e4d9">
+                    <div class="categories__text">
+                        <img style="width: 300px; height:400px"
+                             src="~/Images/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd-removebg-preview.png">
+                        <h4>iPhone</h4>
+                        <p>
+                            Thể hiện sự sang trọng và quý phái
+                        </p>
+                        <a href="~/shop/Index?idLoaiMH=1">Shop now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" style="background-color:  #c9e1d8">
+                            <div class="categories__text">
+                                <img style="width: 250px; height:200px"
+                                     src="~/Images/Xiaomi-13-Ultra-2-removebg-preview.png">
+                                <h4>XIAOMI</h4>
+                                <p>Thể hiện công nghệ hiện đại và bền bỉ</p>
+                                <a href="~/shop/Index?idLoaiMH=3">Shop now</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" style="background-color: #d5d4ec">
+                            <div class="categories__text">
+                                <img style="width: 500px; height:200px"
+                                     src="~/Images/flagship-hoan-hao-cua-samsung-co-the-se-goi-ten-galaxy-s23-ultra-90a-6644568-removebg-preview.png">
+                                <h4>SAMSUNG</h4>
+                                <p>Thể hiện tính tiện dụng và thân thiện</p>
+                                <a href="~/shop/Index?idLoaiMH=2">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" style="background-color: #f3dde1 ">
+                            <div class="categories__text">
+                                <img style="width: 300px; height:200px"
+                                     src="~/Images/OPPO-Find-N2-Flip-MoonlitPurpleLrg2x-removebg-preview.png">
+                                <h4>OPPO</h4>
+                                <p>Thể hiện sự phá cách theo trend</p>
+                                <a href="~/shop/Index?idLoaiMH=4">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" style="background-color: #d4e2f3 ">
+                            <div class="categories__text">
+                                <img style="width: 400px; height:180px"
+                                     src="~/Images/Ro-ri-thong-so-ky-thuat-Realme-9-5G-Camera-48MP-Dimensity-810-va-The-Pixel2-removebg-preview.png">
+                                <h4>REALME</h4>
+                                <p>Thể hiện sự đáp ứng được nhu cầu thông thường</p>
+                                <a href="~/shop/Index?idLoaiMH=6">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+<!-- Bestseller product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div class="section-title" style="width:500px">
+                    <h4 style="color:red">Những sản phẩm bán chạy nhất</h4>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row property__gallery">
+            @foreach (MatHang item in ViewBag.bestSeller)
+            {
+                <a href="~/ChiTietSanPham/Index/@item.IDMH">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="product__item">
+                            <div>
+                                @{
+                                    var base64 = Convert.ToBase64String(item.HinhAnh1);
+                                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                }
+                                <img src='@imgSrc' width="262px" height="262px" alt="Alternate Text" />
+                                @*<img src="@Url.Content(item.HinhAnh1)" width="262px" height="360px" alt="Alternate Text" />*@
+                            </div>
+                            @if (item.SoLuong <= 0) { }
+                            <div class="product__item__text">
+                                <h6><a href="#">@item.TenMH</a></h6>
+                                <!--<div class="product__price">@item.DonGia VND</div>-->
+                                <div class="product__price money">@item.DonGia VND</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</section>
+<!-- Bestseller product Section End -->
+
+
+
+
+
+

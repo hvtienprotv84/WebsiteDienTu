@@ -1,0 +1,91 @@
+﻿@using WebBanDoDienTu.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<WebBanDoDienTu.Models.MatHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Tìm kiếm theo tên sản phẩm -->
+<div style="margin-top:30px; margin-bottom:20px">
+    <form class="nav-link search" style="width:700px; float:right; margin-right:150px">
+        <input type="text" class="form-control" placeholder="Tìm kiếm theo tên sản phẩm" name="TenMatHang">
+    </form>
+</div>
+
+<!-- Tìm kiếm theo tên sản phẩm -->
+<!-- Shop Section Begin -->
+<section class="shop spad" style="margin-top:50px">
+
+    <div class="container">
+
+
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="shop__sidebar">
+                    <div class="sidebar__categories">
+                        <ul style="list-style:none">
+                            <h3 style="color:red">Danh mục</h3>
+                            <li style="padding-top:20px">
+                                <a style="color:black" href="~/Shop/index">Tất Cả Mặt Hàng</a>                                                          
+                            </li>
+                            @foreach (LoaiMatHang item in @ViewBag.Category)
+                            {
+                                <li style="padding-top:20px">
+                                    <a style="color:black" href="~/Shop/index/?idLoaiMH=@item.IDLoaiMH">@item.TenLoaiMH</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-9 col-md-9">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <a href="~/ChiTietSanPham/index/@item.IDMH">
+
+                                    @{
+                                        var base64 = Convert.ToBase64String(item.HinhAnh1);
+                                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                    }
+                                    @*<img src='@imgSrc' width="auto" height="262px" alt="Alternate Text" style="background-size:contain" />*@
+                                    <img src='@imgSrc' width="262px" height="262px" alt="Alternate Text" />
+                                    @* <div class="product__item__pic set-bg" data-setbg="@imgSrc" style="background-image: url(&quot;@imgSrc&quot;);">*@
+
+                                    @* <div class="product__item__pic set-bg" data-setbg="@imgSrc" style="background-image: url(&quot;@imgSrc&quot;); width:300px;height:300px">
+        </div>*@
+                                    <div class="product__item__text">
+                                        <h6>@item.TenMH</h6>
+                                        <div class="product__price money">@item.DonGia VND</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+                             new PagedListRenderOptions
+                             {
+                                 LiElementClasses = new string[] { "pagination__option" },
+                                 DisplayLinkToIndividualPages = true,
+                                 DisplayPageCountAndCurrentLocation = false,
+                                 MaximumPageNumbersToDisplay = 10,
+
+                             })
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Section End -->

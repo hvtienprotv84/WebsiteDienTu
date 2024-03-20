@@ -1,0 +1,4 @@
+Tài khoản Admin
+ 
+UserName: tien	
+Password: vinhtien123456
