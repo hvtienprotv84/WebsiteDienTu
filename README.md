@@ -5,5 +5,7 @@
 # ===============================
 ## CÔNG NGHỆ SỬ DỤNG CHO ĐỒ ÁN CƠ SỞ
 * FrontEnd: HTML, CSS, SCSS, JS
-* BackEnd: C# 
-# -------------------------------
+* BackEnd: C#
+* Database: SQL Server
+* IDEA: Visual Studio
+# ===============================
