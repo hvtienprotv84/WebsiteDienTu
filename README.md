@@ -16,4 +16,4 @@
 *B2: Bấm vào "Tools" -> "NuGet Package Manager" -> "Package Manager Console"
 *B3: Nhập lệnh này vào "Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r" và "Enter" 
 
-/**video hướng dẫn: https://www.youtube.com/watch?v=4BYwkbQCyIE&ab_channel=Infinetsoftsolutions*/
+<!--- video hướng dẫn: https://www.youtube.com/watch?v=4BYwkbQCyIE&ab_channel=Infinetsoftsolutions --->
